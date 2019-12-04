@@ -19,9 +19,9 @@ namespace WmnSharpStdCodes.Windows
     public class SharpRegistry
     {
         public RegistryKey RootRegistry { get; private set; }
-        public RegistryKey SubRegistry { get; private set; }
+        public RegistryKey CurrentRegistry { get; private set; }
         public string RootKeyName{ get; private set; }
-        public string SubKeyName { get; private set; }
+        public string CurrentKeyName { get; private set; }
 
         public SharpRegistry(string fullKey)
         {
@@ -35,7 +35,7 @@ namespace WmnSharpStdCodes.Windows
                 throw new Exception("注册表项错误");
             }
             RootKeyName = GetRootName(fullKey);
-            SubKeyName = fullKey.Substring(RootKeyName.Length);
+            CurrentKeyName = fullKey.Substring(RootKeyName.Length);
             Open();
         }
 
@@ -43,22 +43,22 @@ namespace WmnSharpStdCodes.Windows
         {
             get
             {
-                return SubRegistry != null;
+                return CurrentRegistry != null;
             }
         }
 
         public void Create()
         {
             if (Exists) return;
-            SubRegistry = RootRegistry.CreateSubKey(SubKeyName);
+            CurrentRegistry = RootRegistry.CreateSubKey(CurrentKeyName);
         }
 
         public void Delete()
         {
             Open();
             if (!Exists) return;
-            RootRegistry.DeleteSubKey(SubKeyName, true);
-            SubRegistry = null;
+            RootRegistry.DeleteSubKey(CurrentKeyName, true);
+            CurrentRegistry = null;
             Close();
         }
 
@@ -66,22 +66,22 @@ namespace WmnSharpStdCodes.Windows
 
         internal void Open()
         {
-            if (SubRegistry == null)
+            if (CurrentRegistry == null)
             {
-                SubRegistry = RootRegistry.OpenSubKey(SubKeyName, true);
+                CurrentRegistry = RootRegistry.OpenSubKey(CurrentKeyName, true);
             }
             else if(IsClose)
             {
-                SubRegistry = RootRegistry.OpenSubKey(SubKeyName, true);
+                CurrentRegistry = RootRegistry.OpenSubKey(CurrentKeyName, true);
             }
             IsClose = false;
         }
 
         public void Close()
         {
-            if (SubRegistry != null)
+            if (CurrentRegistry != null)
             {
-                SubRegistry.Close();
+                CurrentRegistry.Close();
             }
             IsClose = true;
         }
@@ -101,28 +101,28 @@ namespace WmnSharpStdCodes.Windows
         public object ReadSub(string item)
         {
             Open();
-            object obj = SubRegistry.GetValue(item);
+            object obj = CurrentRegistry.GetValue(item);
             return obj;
         }
 
         public void WriteSub(string item,object value)
         {
             Open();
-            SubRegistry.SetValue(item, value);
+            CurrentRegistry.SetValue(item, value);
             Close();
         }
 
         public void DeleteSub(string subName)
         {
             Open();
-            SubRegistry.DeleteValue(subName);
+            CurrentRegistry.DeleteValue(subName);
             Close();
         }
 
         public bool ExistsSub(string subName)
         {
             Open();
-            string[] subNames = GetSubKeyNames();
+            string[] subNames = GetSubItemNames();
             if (subNames == null) return false;
             if (subNames.Length == 0) return false;
             foreach (string keyName in subNames)
@@ -135,11 +135,11 @@ namespace WmnSharpStdCodes.Windows
             return false;
         }
 
-        public string[] GetSubKeyNames()
+        public string[] GetSubItemNames()
         {
             Open();
             if (!Exists) return null;
-            return SubRegistry.GetSubKeyNames();
+            return CurrentRegistry.GetSubKeyNames();
         }
 
         #endregion

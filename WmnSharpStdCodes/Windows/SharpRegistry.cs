@@ -1,4 +1,9 @@
-﻿using Microsoft.Win32;
+﻿/**
+    2019-12-04:
+    卓语言:中文编程，世界第一个非名参式编程语言
+    网址:www.zyuyan.org
+*/
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,6 +12,10 @@ using System.Text;
 
 namespace WmnSharpStdCodes.Windows
 {
+    /// <summary>
+    /// 操作windows注册表，支持32位和64位
+    /// 版本:1.0，2019-12-04 09:17:15
+    /// </summary>
     public class SharpRegistry
     {
         public RegistryKey RootRegistry { get; private set; }
@@ -30,31 +39,24 @@ namespace WmnSharpStdCodes.Windows
             Open();
         }
 
-        public bool Exists()
+        public bool Exists
         {
-            return SubRegistry != null;
-        }
-
-        public bool ExistsValue()
-        {
-            return Exists();
-        }
-
-        public bool NotExists()
-        {
-            return !Exists();
+            get
+            {
+                return SubRegistry != null;
+            }
         }
 
         public void Create()
         {
-            if (Exists()) return;
+            if (Exists) return;
             SubRegistry = RootRegistry.CreateSubKey(SubKeyName);
         }
 
         public void Delete()
         {
             Open();
-            if (!Exists()) return;
+            if (!Exists) return;
             RootRegistry.DeleteSubKey(SubKeyName, true);
             SubRegistry = null;
             Close();
@@ -82,14 +84,6 @@ namespace WmnSharpStdCodes.Windows
                 SubRegistry.Close();
             }
             IsClose = true;
-        }
-
-        public bool IsExists
-        {
-            get
-            {
-                return Exists();
-            }
         }
 
         #region 注册表键值操作
@@ -144,7 +138,7 @@ namespace WmnSharpStdCodes.Windows
         public string[] GetSubKeyNames()
         {
             Open();
-            if (!Exists()) return null;
+            if (!Exists) return null;
             return SubRegistry.GetSubKeyNames();
         }
 

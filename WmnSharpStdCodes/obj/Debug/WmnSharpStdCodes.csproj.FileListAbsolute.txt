@@ -1,0 +1,5 @@
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpStdCodes\obj\Debug\WmnSharpStdCodes.csprojAssemblyReference.cache
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpStdCodes\bin\Debug\WmnSharpStdCodes.dll
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpStdCodes\bin\Debug\WmnSharpStdCodes.pdb
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpStdCodes\obj\Debug\WmnSharpStdCodes.dll
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpStdCodes\obj\Debug\WmnSharpStdCodes.pdb

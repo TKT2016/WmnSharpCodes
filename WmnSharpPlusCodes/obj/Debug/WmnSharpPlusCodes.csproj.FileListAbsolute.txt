@@ -1,0 +1,8 @@
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpPlusCodes\bin\Debug\WmnSharpPlusCodes.dll
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpPlusCodes\bin\Debug\WmnSharpPlusCodes.pdb
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpPlusCodes\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpPlusCodes\bin\Debug\Newtonsoft.Json.dll
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpPlusCodes\obj\Debug\WmnSharpPlusCodes.csprojAssemblyReference.cache
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpPlusCodes\obj\Debug\WmnSharpPlusCodes.csproj.CopyComplete
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpPlusCodes\obj\Debug\WmnSharpPlusCodes.dll
+E:\WorkArea\8_开源\WmnSharpCodes\WmnSharpPlusCodes\obj\Debug\WmnSharpPlusCodes.pdb
